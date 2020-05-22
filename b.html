@@ -169,7 +169,8 @@ document.getElementById( "img_ctrl" ).addEventListener( "touchstart", function( 
 document.getElementById( "img_ctrl" ).addEventListener( "touchend", function( event ) {
 	rn_command=0;
 } ) ;
-
+document.getElementById( "img_ctrl" ).addEventListener( "touchmove", function( event ) {
+} ) ;
 function select_command(x,y){//107,12,187,92
 	if( 107< x && x <187 && 12< y && y <92 ){
 		rn_command=5;
