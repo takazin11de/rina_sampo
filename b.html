@@ -1,0 +1,1670 @@
+<!doctype html><html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>titles</title>
+<style>
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+    margin:0;
+    padding:0;
+    border:0;
+    outline:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+
+body {
+    line-height:1;
+}
+
+article,aside,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section {
+    display:block;
+}
+
+nav ul {
+    list-style:none;
+}
+
+blockquote, q {
+    quotes:none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content:'';
+    content:none;
+}
+
+a {
+    margin:0;
+    padding:0;
+    font-size:100%;
+    vertical-align:baseline;
+    background:transparent;
+}
+
+/* change colours to suit your needs */
+ins {
+    background-color:#ff9;
+    color:#000;
+    text-decoration:none;
+}
+
+/* change colours to suit your needs */
+mark {
+    background-color:#ff9;
+    color:#000;
+    font-style:italic;
+    font-weight:bold;
+}
+
+del {
+    text-decoration: line-through;
+}
+
+abbr[title], dfn[title] {
+    border-bottom:1px dotted;
+    cursor:help;
+}
+
+table {
+    border-collapse:collapse;
+    border-spacing:0;
+}
+
+/* change border colour to suit your needs */
+hr {
+    display:block;
+    height:1px;
+    border:0;
+    border-top:1px solid #cccccc;
+    margin:1em 0;
+    padding:0;
+}
+
+input, select {
+    vertical-align:middle;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img,canvas {
+  display: block;
+	margin-left: auto;
+  margin-right: auto;
+}
+
+body{
+	text-align: center;
+}
+</style></head><body>
+<canvas id="glcanvas"></canvas>
+<img src="ctrl.png" id="img_ctrl" width="800" height="300" border="0" >
+<map name="ctrl_">
+<area href="javascript:alert();" shape="rect" alt="四角形" coords="107,12,187,92">
+<area href="javascript:;" shape="rect" alt="四角形" coords="233,12,313,92">
+<area href="javascript:;" shape="rect" alt="四角形" coords="360,12,440,92">
+<area href="javascript:;" shape="rect" alt="四角形" coords="484,12,564,92">
+<area href="javascript:;" shape="rect" alt="四角形" coords="612,12,692,92">
+
+<area href="javascript:;" shape="rect" alt="四角形" coords="107,112,187,192">
+<
+<area href="javascript:;" shape="rect" alt="四角形" coords="360,112,440,192">
+<area href="javascript:;" shape="rect" alt="四角形" coords="484,112,564,192">
+<area href="javascript:;" shape="rect" alt="四角形" coords="612,112,692,192">
+
+<area href="javascript:;" shape="rect" alt="四角形" coords="233,209,313,289">
+<area href="javascript:;" shape="rect" alt="四角形" coords="484,209,564,289">
+<area href="javascript:;" shape="rect" alt="四角形" coords="612,209,692,289">
+</map>
+</body>
+<script>
+var rn_command=0;
+document.getElementById( "img_ctrl" ).addEventListener( "mousedown", function( event ) {
+	var clickX = event.pageX ;
+	var clickY = event.pageY ;
+
+	// 要素の位置を取得
+	var clientRect = this.getBoundingClientRect() ;
+	var positionX = clientRect.left + window.pageXOffset ;
+	var positionY = clientRect.top + window.pageYOffset ;
+
+	// 要素内におけるクリック位置を計算
+	var x = clickX - positionX ;
+	var y = clickY - positionY ;
+	//alert(""+x+","+y);
+	select_command(x,y);
+} ) ;
+document.getElementById( "img_ctrl" ).addEventListener( "mouseup", function( event ) {
+	rn_command=0;
+} ) ;
+
+document.getElementById( "img_ctrl" ).addEventListener( "touchstart", function( event ) {
+	var clickX = event.changedTouches[0].pageX;
+	var clickY = event.changedTouches[0].pageY;
+
+	// 要素の位置を取得
+	var clientRect = this.getBoundingClientRect() ;
+	var positionX = clientRect.left + window.pageXOffset ;
+	var positionY = clientRect.top + window.pageYOffset ;
+
+	// 要素内におけるクリック位置を計算
+	var x = clickX - positionX ;
+	var y = clickY - positionY ;
+	//alert(""+x+","+y);
+	select_command(x,y);
+} ) ;
+document.getElementById( "img_ctrl" ).addEventListener( "touchend", function( event ) {
+	rn_command=0;
+} ) ;
+
+function select_command(x,y){//107,12,187,92
+	if( 107< x && x <187 && 12< y && y <92 ){
+		rn_command=5;
+	}
+	if( 233< x && x <313 && 12< y && y <92 ){
+		rn_command=1;
+	}
+	if( 360< x && x <440 && 12< y && y <92 ){
+		rn_command=6;
+	}
+	if( 484< x && x <564 && 12< y && y <92 ){
+		rn_command=11;
+	}
+	if( 612< x && x <692 && 12< y && y <92 ){
+		rn_command=14;
+	}
+
+	if( 107< x && x <187 && 112< y && y <192 ){
+		rn_command=3;
+	}
+	if( 360< x && x <440 && 112< y && y <192 ){
+		rn_command=4;
+	}
+	if( 484< x && x <564 && 112< y && y <192 ){
+		rn_command=12;
+	}
+	if( 612< x && x <692 && 112< y && y <192 ){
+		rn_command=15;
+	}
+
+
+	if( 233< x && x <313 && 209< y && y <289 ){
+		rn_command=2;
+	}
+	if( 484< x && x <564 && 209< y && y <289 ){
+		rn_command=13;
+	}
+	if( 612< x && x <692 && 209< y && y <289 ){
+		rn_command=16;
+	}
+}
+
+var gl;
+var program;
+var c;
+var index;
+var texture;
+var uniLocation = new Array();
+var uNormalMatrix;
+var m;
+var mMatrix;
+var vMatrix;
+var pMatrix;
+var mvpMatrix;
+var mvMatrix;
+var vpMatrix;
+var inv_mMatrix;
+var f_loading_tex=false;
+
+var deg=0.0;
+var old_timestamp = 0;
+var grp;
+var grp1;
+var rn_head1;
+var rn_head2;
+var rn_body;
+var rn_arm1;
+var rn_arm2;
+var rn_leg1;
+var rn_leg2;
+var wall;
+
+onload = function(){
+	init_gl();
+
+	var objs=new objects();
+	grp=new group();
+	grp1=new group();
+
+	rn_head1=new group();
+	rn_head2=new group();
+	rn_body=new group();
+	rn_arm1=new group();
+	rn_arm2=new group();
+	rn_leg1=new group();
+	rn_leg2=new group();
+	wall=new group();
+
+
+	{/* floor */
+		let x1=-11.0;
+		let y1=0.0;
+		let z1=11.0;
+		let x2=-x1;
+		let y2=-1;
+		let z2=-z1;
+		wall.add_polygon(cube([[x1,y1,z1],[x1,y2,z1],[x2,y2,z1],[x2,y1,z1],
+													[x2,y1,z2],[x2,y2,z2],[x1,y2,z2],[x1,y1,z2]],[0.5,0.5,0.5,1],[
+													coord4_ccw(1,1,2,2),coord4_ccw(1,1,2,2),coord4_ccw(1,1,2,2),
+													coord4_ccw(1,1,2,2),coord4_ccw(1,1,2,2),coord4_ccw(1,1,2,2),
+		]));
+	};
+	{/* wall1 */
+		let x1=-11.0;
+		let y1=4.0;
+		let z1=11.0;
+		let x2=-x1;
+		let y2=-1;
+		let z2=z1-1.0;
+		wall.add_polygon(cube([[x1,y1,z1],[x1,y2,z1],[x2,y2,z1],[x2,y1,z1],
+													[x2,y1,z2],[x2,y2,z2],[x1,y2,z2],[x1,y1,z2]],[0.5,0.5,0.5,1],[
+													coord4_ccw(1,1,2,2),coord4_ccw(1,1,2,2),coord4_ccw(1,1,2,2),
+													coord4_ccw(1,1,2,2),coord4_ccw(1,1,2,2),coord4_ccw(1,1,2,2),
+		]));
+	};
+	{/* wall2 */
+		let x1=-11.0;
+		let y1=4.0;
+		let z1=-10.0;
+		let x2=-x1;
+		let y2=-1;
+		let z2=z1-1.0;
+		wall.add_polygon(cube([[x1,y1,z1],[x1,y2,z1],[x2,y2,z1],[x2,y1,z1],
+													[x2,y1,z2],[x2,y2,z2],[x1,y2,z2],[x1,y1,z2]],[0.5,0.5,0.5,1],[
+													coord4_ccw(1,1,2,2),coord4_ccw(1,1,2,2),coord4_ccw(1,1,2,2),
+													coord4_ccw(1,1,2,2),coord4_ccw(1,1,2,2),coord4_ccw(1,1,2,2),
+		]));
+	};
+	{/* wall3 */
+		let x1=-11.0;
+		let y1=4.0;
+		let z1=11.0;
+		let x2=-10;
+		let y2=-1;
+		let z2=-z1;
+		wall.add_polygon(cube([[x1,y1,z1],[x1,y2,z1],[x2,y2,z1],[x2,y1,z1],
+													[x2,y1,z2],[x2,y2,z2],[x1,y2,z2],[x1,y1,z2]],[0.5,0.5,0.5,1],[
+													coord4_ccw(1,1,2,2),coord4_ccw(1,1,2,2),coord4_ccw(1,1,2,2),
+													coord4_ccw(1,1,2,2),coord4_ccw(1,1,2,2),coord4_ccw(1,1,2,2),
+		]));
+	};
+	{/* wall4 */
+		let x1=10.0;
+		let y1=4.0;
+		let z1=11.0;
+		let x2=11;
+		let y2=-1;
+		let z2=-z1;
+		wall.add_polygon(cube([[x1,y1,z1],[x1,y2,z1],[x2,y2,z1],[x2,y1,z1],
+													[x2,y1,z2],[x2,y2,z2],[x1,y2,z2],[x1,y1,z2]],[0.5,0.5,0.5,1],[
+													coord4_ccw(1,1,2,2),coord4_ccw(1,1,2,2),coord4_ccw(1,1,2,2),
+													coord4_ccw(1,1,2,2),coord4_ccw(1,1,2,2),coord4_ccw(1,1,2,2),
+		]));
+	};
+	{/* head */
+		let x1=-0.2;
+		let y1=1.5;
+		let z1=0.2;
+		let x2=-x1;
+		let y2=1.1;
+		let z2=-z1;
+		rn_head1.add_polygon(cube([[x1,y1,z1],[x1,y2,z1],[x2,y2,z1],[x2,y1,z1],
+													[x2,y1,z2],[x2,y2,z2],[x1,y2,z2],[x1,y1,z2]],[0.5,0.5,0.5,1],[
+													coord4_ccw(152,49,152+20,49+20),coord4_ccw(152,49-20,152+20,49),coord4_ccw(152+20,49-20,152,49-40),
+													coord4_ccw(152+20,49,152+40,49-20),coord4_cw(152+20,49-20,152+40,49),coord4_ccw(9,1,14,6),/*
+													coord4_ccw(152+60,49,152+20+60,49+20),coord4_ccw(152,49-20,152+20,49),coord4_ccw(152+20,49-20,152,49-40),
+													coord4_ccw(152+20+60,49,152+40+60,49-20),coord4_cw(152+20+60,49-20,152+40+60,49),coord4_ccw(9,1,14,6),*/
+		]));
+	};
+	{/* head */
+		let x1=-0.2;
+		let y1=1.5;
+		let z1=0.2;
+		let x2=-x1;
+		let y2=1.1;
+		let z2=-z1;
+		rn_head2.add_polygon(cube([[x1,y1,z1],[x1,y2,z1],[x2,y2,z1],[x2,y1,z1],
+													[x2,y1,z2],[x2,y2,z2],[x1,y2,z2],[x1,y1,z2]],[0.5,0.5,0.5,1],[/*
+													coord4_ccw(152,49,152+20,49+20),coord4_ccw(152,49-20,152+20,49),coord4_ccw(152+20,49-20,152,49-40),
+													coord4_ccw(152+20,49,152+40,49-20),coord4_cw(152+20,49-20,152+40,49),coord4_ccw(9,1,14,6),*/
+													coord4_ccw(152+60,49,152+20+60,49+20),coord4_ccw(152,49-20,152+20,49),coord4_ccw(152+20,49-20,152,49-40),
+													coord4_ccw(152+20+60,49,152+40+60,49-20),coord4_cw(152+20+60,49-20,152+40+60,49),coord4_ccw(9,1,14,6),
+		]));
+	};
+	{/* shadow */
+		let x1=-0.5;
+		let y1=0.02;
+		let z1=-0.5;
+		let x2=0.5;
+		let y2=0;
+		let z2=0.5;
+		rn_body.add_polygon(tetragon([x1,y1,z1,  x1,y1,z2,  x2,y1,z2,  x2,y1,z1],[0.0,0.0,0.0,0.6],coord4_ccw(1,1,2,2)));
+
+	};
+	{/* neck */
+		let x1=-0.06;
+		let y1=1.1;
+		let z1=0.06;
+		let x2=-x1;
+		let y2=1.04;
+		let z2=-z1;
+		rn_body.add_polygon(cube([[x1,y1,z1],[x1,y2,z1],[x2,y2,z1],[x2,y1,z1],
+													[x2,y1,z2],[x2,y2,z2],[x1,y2,z2],[x1,y1,z2]],[0.5,0.5,0.5,1],[
+														coord4_ccw(9,1,14,6),coord4_ccw(9,1,14,6),coord4_ccw(9,1,14,6),
+														coord4_ccw(9,1,14,6),coord4_ccw(9,1,14,6),coord4_ccw(9,1,14,6),
+		]));
+	};
+	{/* dou_up */
+		let x1=-0.2;
+		let y1=1.04;
+		let z1=0.1;
+		let x2=-x1;
+		let y2=0.7;
+		let z2=-z1;
+		rn_body.add_polygon(cube([[x1,y1,z1],[x1,y2,z1],[x2,y2,z1],[x2,y1,z1],
+													[x2,y1,z2],[x2,y2,z2],[x1,y2,z2],[x1,y1,z2]],[0.5,0.5,0.5,1],[
+													coord4_ccw(96,35,116,48),coord4_ccw(96,25,116,35),coord4_ccw(116,25,96,12),
+													coord4_ccw(67,1,68,2),coord4_ccw(67,1,68,2),coord4_ccw(67,1,68,2),
+
+		]));
+
+	};
+	{/* skirt */
+		let x1=-0.2;
+		let y1=0.7;
+		let z1=0.1;
+		let x2=-x1;
+		let y2=0.3;
+		let z2=-z1;
+		let s=0.34;
+		rn_body.add_polygon(cube([[x1,y1,z1],[-s,y2,s],[s,y2,s],[x2,y1,z1],
+													[x2,y1,z2],[s,y2,-s],[-s,y2,-s],[x1,y1,z2]],[0.5,0.5,0.5,1],[
+													coord4(96,48,89,68,123,68,116,48),coord4_ccw(67,1,68,2),coord4(53,48,47,68,47+34,68,75,48),
+													coord4(59,48,47,68,47+34,68,59+10,48),coord4(59,48,47,68,47+34,68,59+10,48),coord4_ccw(67,1,68,2),
+		]));
+	};
+	{/* ball1 */
+		let cx=-0.34/Math.sqrt(2);
+		let cy=0.3;
+		let cz=0.34/Math.sqrt(2);
+
+		let x1=-0.12;
+		let y1=x1+cy;
+		let z1=x1;
+		let x2=-x1;
+		let y2=-x1+cy;
+		let z2=-z1;
+
+		deg=0;
+		rn_body.add_polygon(cube([vec_roty(x1,y1,z1,cx,cy,cz,deg),vec_roty(x1,y2,z1,cx,cy,cz,deg),vec_roty(x2,y2,z1,cx,cy,cz,deg),vec_roty(x2,y1,z1,cx,cy,cz,deg),
+													vec_roty(x2,y1,z2,cx,cy,cz,deg),vec_roty(x2,y2,z2,cx,cy,cz,deg),vec_roty(x1,y2,z2,cx,cy,cz,deg),vec_roty(x1,y1,z2,cx,cy,cz,deg)],[0.5,0.5,0.5,1],[
+														coord4_ccw(67,1,68,2),coord4_ccw(67,1,68,2),coord4_cw(67,13,79,1),
+														coord4_ccw(67,1,68,2),coord4_ccw(79,13,67,1),coord4_ccw(67,1,68,2),
+		]));
+	};
+	{/* ball2 */
+		let cx=0;
+		let cy=0.3;
+		let cz=0.34;
+
+		let x1=-0.12;
+		let y1=x1+cy;
+		let z1=x1;
+		let x2=-x1;
+		let y2=-x1+cy;
+		let z2=-z1;
+
+		deg=45;
+		rn_body.add_polygon(cube([vec_roty(x1,y1,z1,cx,cy,cz,deg),vec_roty(x1,y2,z1,cx,cy,cz,deg),vec_roty(x2,y2,z1,cx,cy,cz,deg),vec_roty(x2,y1,z1,cx,cy,cz,deg),
+													vec_roty(x2,y1,z2,cx,cy,cz,deg),vec_roty(x2,y2,z2,cx,cy,cz,deg),vec_roty(x1,y2,z2,cx,cy,cz,deg),vec_roty(x1,y1,z2,cx,cy,cz,deg)],[0.5,0.5,0.5,1],[
+													coord4_ccw(67,1,68,2),coord4_ccw(67,1,68,2),coord4_cw(67,13,79,1),
+													coord4_ccw(67,1,68,2),coord4_ccw(79,13,67,1),coord4_ccw(67,1,68,2),
+		]));
+	};
+	{/* ball2 */
+		let cx=0.34/Math.sqrt(2);
+		let cy=0.3;
+		let cz=0.34/Math.sqrt(2);
+
+		let x1=-0.12;
+		let y1=x1+cy;
+		let z1=x1;
+		let x2=-x1;
+		let y2=-x1+cy;
+		let z2=-z1;
+
+		deg=90;
+		rn_body.add_polygon(cube([vec_roty(x1,y1,z1,cx,cy,cz,deg),vec_roty(x1,y2,z1,cx,cy,cz,deg),vec_roty(x2,y2,z1,cx,cy,cz,deg),vec_roty(x2,y1,z1,cx,cy,cz,deg),
+													vec_roty(x2,y1,z2,cx,cy,cz,deg),vec_roty(x2,y2,z2,cx,cy,cz,deg),vec_roty(x1,y2,z2,cx,cy,cz,deg),vec_roty(x1,y1,z2,cx,cy,cz,deg)],[0.5,0.5,0.5,1],[
+														coord4_ccw(67,1,68,2),coord4_ccw(67,1,68,2),coord4_cw(67,13,79,1),
+														coord4_ccw(67,1,68,2),coord4_ccw(79,13,67,1),coord4_ccw(67,1,68,2),
+		]));
+	};
+	{/* ball4 */
+		let cx=0.34;
+		let cy=0.3;
+		let cz=0;
+
+		let x1=-0.12;
+		let y1=x1+cy;
+		let z1=x1;
+		let x2=-x1;
+		let y2=-x1+cy;
+		let z2=-z1;
+
+		deg=135;
+		rn_body.add_polygon(cube([vec_roty(x1,y1,z1,cx,cy,cz,deg),vec_roty(x1,y2,z1,cx,cy,cz,deg),vec_roty(x2,y2,z1,cx,cy,cz,deg),vec_roty(x2,y1,z1,cx,cy,cz,deg),
+													vec_roty(x2,y1,z2,cx,cy,cz,deg),vec_roty(x2,y2,z2,cx,cy,cz,deg),vec_roty(x1,y2,z2,cx,cy,cz,deg),vec_roty(x1,y1,z2,cx,cy,cz,deg)],[0.5,0.5,0.5,1],[
+														coord4_ccw(67,1,68,2),coord4_ccw(67,1,68,2),coord4_cw(67,13,79,1),
+														coord4_ccw(67,1,68,2),coord4_ccw(79,13,67,1),coord4_ccw(67,1,68,2),
+		]));
+	};
+	{/* ball5 */
+		let cx=0.34/Math.sqrt(2);
+		let cy=0.3;
+		let cz=-0.34/Math.sqrt(2);
+
+		let x1=-0.12;
+		let y1=x1+cy;
+		let z1=x1;
+		let x2=-x1;
+		let y2=-x1+cy;
+		let z2=-z1;
+
+		deg=180;
+		rn_body.add_polygon(cube([vec_roty(x1,y1,z1,cx,cy,cz,deg),vec_roty(x1,y2,z1,cx,cy,cz,deg),vec_roty(x2,y2,z1,cx,cy,cz,deg),vec_roty(x2,y1,z1,cx,cy,cz,deg),
+													vec_roty(x2,y1,z2,cx,cy,cz,deg),vec_roty(x2,y2,z2,cx,cy,cz,deg),vec_roty(x1,y2,z2,cx,cy,cz,deg),vec_roty(x1,y1,z2,cx,cy,cz,deg)],[0.5,0.5,0.5,1],[
+														coord4_ccw(67,1,68,2),coord4_ccw(67,1,68,2),coord4_cw(67,13,79,1),
+														coord4_ccw(67,1,68,2),coord4_ccw(79,13,67,1),coord4_ccw(67,1,68,2),
+		]));
+	};
+	{/* ball6 */
+		let cx=0;
+		let cy=0.3;
+		let cz=-0.34;
+
+		let x1=-0.12;
+		let y1=x1+cy;
+		let z1=x1;
+		let x2=-x1;
+		let y2=-x1+cy;
+		let z2=-z1;
+
+		deg=225;
+		rn_body.add_polygon(cube([vec_roty(x1,y1,z1,cx,cy,cz,deg),vec_roty(x1,y2,z1,cx,cy,cz,deg),vec_roty(x2,y2,z1,cx,cy,cz,deg),vec_roty(x2,y1,z1,cx,cy,cz,deg),
+													vec_roty(x2,y1,z2,cx,cy,cz,deg),vec_roty(x2,y2,z2,cx,cy,cz,deg),vec_roty(x1,y2,z2,cx,cy,cz,deg),vec_roty(x1,y1,z2,cx,cy,cz,deg)],[0.5,0.5,0.5,1],[
+														coord4_ccw(67,1,68,2),coord4_ccw(67,1,68,2),coord4_cw(67,13,79,1),
+														coord4_ccw(67,1,68,2),coord4_ccw(79,13,67,1),coord4_ccw(67,1,68,2),
+		]));
+	};
+	{/* ball7 */
+		let cx=-0.34/Math.sqrt(2);
+		let cy=0.3;
+		let cz=-0.34/Math.sqrt(2);
+
+		let x1=-0.12;
+		let y1=x1+cy;
+		let z1=x1;
+		let x2=-x1;
+		let y2=-x1+cy;
+		let z2=-z1;
+
+		deg=270;
+		rn_body.add_polygon(cube([vec_roty(x1,y1,z1,cx,cy,cz,deg),vec_roty(x1,y2,z1,cx,cy,cz,deg),vec_roty(x2,y2,z1,cx,cy,cz,deg),vec_roty(x2,y1,z1,cx,cy,cz,deg),
+													vec_roty(x2,y1,z2,cx,cy,cz,deg),vec_roty(x2,y2,z2,cx,cy,cz,deg),vec_roty(x1,y2,z2,cx,cy,cz,deg),vec_roty(x1,y1,z2,cx,cy,cz,deg)],[0.5,0.5,0.5,1],[
+														coord4_ccw(67,1,68,2),coord4_ccw(67,1,68,2),coord4_cw(67,13,79,1),
+														coord4_ccw(67,1,68,2),coord4_ccw(79,13,67,1),coord4_ccw(67,1,68,2),
+		]));
+	};
+	{/* ball6 */
+		let cx=-0.34;
+		let cy=0.3;
+		let cz=0;
+
+		let x1=-0.12;
+		let y1=x1+cy;
+		let z1=x1;
+		let x2=-x1;
+		let y2=-x1+cy;
+		let z2=-z1;
+
+		deg=315;
+		rn_body.add_polygon(cube([vec_roty(x1,y1,z1,cx,cy,cz,deg),vec_roty(x1,y2,z1,cx,cy,cz,deg),vec_roty(x2,y2,z1,cx,cy,cz,deg),vec_roty(x2,y1,z1,cx,cy,cz,deg),
+													vec_roty(x2,y1,z2,cx,cy,cz,deg),vec_roty(x2,y2,z2,cx,cy,cz,deg),vec_roty(x1,y2,z2,cx,cy,cz,deg),vec_roty(x1,y1,z2,cx,cy,cz,deg)],[0.5,0.5,0.5,1],[
+														coord4_ccw(67,1,68,2),coord4_ccw(67,1,68,2),coord4_cw(67,13,79,1),
+														coord4_ccw(67,1,68,2),coord4_ccw(79,13,67,1),coord4_ccw(67,1,68,2),
+		]));
+	};
+	{/* hairtall1 */
+		let x1=-0.34;
+		let y1=1.5;
+		let z1=-0.04;
+		let x2=-0.22;
+		let y2=1.1;
+		let z2=-0.16;
+		rn_body.add_polygon(cube([[x1,y1-0.06,z1],[x1,y2+0.06,z1],[x2,y2,z1],[x2,y1,z1],
+													[x2,y1,z2],[x2,y2,z2],[x1,y2+0.06,z2],[x1,y1-0.06,z2]],[0.5,0.5,0.5,1],[
+													coord4_ccw(25,1,31,7),coord4_ccw(25,1,31,7),coord4_ccw(25,1,31,7),
+													coord4_ccw(25,1,31,7),coord4_ccw(25,1,31,7),coord4_ccw(25,1,31,7),
+		]));
+	};
+	{/* hairtall2 */
+		let x1=0.22;
+		let y1=1.5;
+		let z1=-0.04;
+		let x2=0.34;
+		let y2=1.1;
+		let z2=-0.16;
+		rn_body.add_polygon(cube([[x1,y1,z1],[x1,y2,z1],[x2,y2+0.06,z1],[x2,y1-0.06,z1],
+													[x2,y1-0.06,z2],[x2,y2+0.06,z2],[x1,y2,z2],[x1,y1,z2]],[0.5,0.5,0.5,1],[
+														coord4_ccw(25,1,31,7),coord4_ccw(25,1,31,7),coord4_ccw(25,1,31,7),
+														coord4_ccw(25,1,31,7),coord4_ccw(25,1,31,7),coord4_ccw(25,1,31,7),
+		]));
+	};
+	{/* hairtallacc11 */
+		let x1=-0.28;
+		let y1=1.58;
+		let z1=0.04;
+		let x2=-0.20;
+		let y2=1.5;
+		let z2=-z1;
+		rn_body.add_polygon(cube([[x1-0.04,y1,z1],[x1,y2,z1],[x2,y2,z1],[x2-0.04,y1,z1],
+													[x2-0.04,y1,z2],[x2,y2,z2],[x1,y2,z2],[x1-0.04,y1,z2]],[0.5,0.5,0.5,1],[
+														coord4_ccw(17,1,22,6),coord4_ccw(17,1,22,6),coord4_ccw(17,1,22,6),
+														coord4_ccw(17,1,22,6),coord4_ccw(17,1,22,6),coord4_ccw(17,1,22,6),
+		]));
+	};
+	{/* hairtallacc12 */
+		let x1=-0.28;
+		let y1=1.48;
+		let z1=0.04;
+		let x2=-0.20;
+		let y2=1.40;
+		let z2=-z1;
+		rn_body.add_polygon(cube([[x1-0.04,y1,z1],[x1,y2,z1],[x2-0.04,y2,z1],[x2,y1,z1],
+													[x2,y1,z2],[x2-0.04,y2,z2],[x1,y2,z2],[x1-0.04,y1,z2]],[0.5,0.5,0.5,1],[
+													coord4_ccw(17,1,22,6),coord4_ccw(17,1,22,6),coord4_ccw(17,1,22,6),
+													coord4_ccw(17,1,22,6),coord4_ccw(17,1,22,6),coord4_ccw(17,1,22,6),
+		]));
+	};
+	{/* hairtallacc21 */
+		let x1=0.20;
+		let y1=1.58;
+		let z1=0.04;
+		let x2=0.28;
+		let y2=1.5;
+		let z2=-z1;
+		rn_body.add_polygon(cube([[x1+0.04,y1,z1],[x1,y2,z1],[x2,y2,z1],[x2+0.04,y1,z1],
+													[x2+0.04,y1,z2],[x2,y2,z2],[x1,y2,z2],[x1+0.04,y1,z2]],[0.5,0.5,0.5,1],[
+														coord4_ccw(17,1,22,6),coord4_ccw(17,1,22,6),coord4_ccw(17,1,22,6),
+														coord4_ccw(17,1,22,6),coord4_ccw(17,1,22,6),coord4_ccw(17,1,22,6),
+		]));
+	};
+	{/* hairtallacc22 */
+		let x1=0.20;
+		let y1=1.48;
+		let z1=0.04;
+		let x2=0.28;
+		let y2=1.40;
+		let z2=-z1;
+		rn_body.add_polygon(cube([[x1,y1,z1],[x1+0.04,y2,z1],[x2,y2,z1],[x2+0.04,y1,z1],
+													[x2+0.04,y1,z2],[x2,y2,z2],[x1+0.04,y2,z2],[x1,y1,z2]],[0.5,0.5,0.5,1],[
+														coord4_ccw(17,1,22,6),coord4_ccw(17,1,22,6),coord4_ccw(17,1,22,6),
+														coord4_ccw(17,1,22,6),coord4_ccw(17,1,22,6),coord4_ccw(17,1,22,6),
+		]));
+	};
+	{/* hairtallacc3 */
+		let x1=-0.16;
+		let y1=1.6;
+		let z1=0.12;
+		let x2=-x1;
+		let y2=1.5;
+		let z2=z1-0.04;
+		rn_body.add_polygon(cube([[x1,y1,z1],[x1,y2,z1],[x2,y2,z1],[x2,y1,z1],
+													[x2,y1,z2],[x2,y2,z2],[x1,y2,z2],[x1,y1,z2]],[0.5,0.5,0.5,1],[
+													coord4_ccw(33,1,64,5),coord4_ccw(1,1,2,2),coord4_ccw(33,1,64,5),
+													coord4_ccw(1,1,2,2),coord4_ccw(1,1,2,2),coord4_ccw(1,1,2,2),
+		]));
+	};
+	{/* ribbon11 */
+		let x1=-0.3;
+		let y1=0.9;
+		let z1=-0.1;
+		let x2=0.0;
+		let y2=0.7;
+		let z2=z1-0.04;
+		rn_body.add_polygon(cube([[x1,y1,z1],[x1+0.07,y2+0.07,z1],[x2,y2,z1],[x2-0.07,y1-0.07,z1],
+													[x2-0.07,y1-0.07,z2],[x2,y2,z2],[x1+0.07,y2+0.07,z2],[x1,y1,z2]],[0.5,0.5,0.5,1],[
+													coord4_ccw(1,1,2,2),coord4_ccw(1,1,2,2),coord4_ccw(1,1,2,2),
+													coord4_ccw(1,1,2,2),coord4_ccw(1,1,2,2),coord4_ccw(1,1,2,2),
+		]));
+	};
+	{/* ribbon12 */
+		let x1=0.0;
+		let y1=0.9;
+		let z1=-0.1;
+		let x2=0.3;
+		let y2=0.7;
+		let z2=z1-0.04;
+		rn_body.add_polygon(cube([[x1+0.07,y1-0.07,z1],[x1,y2,z1],[x2-0.07,y2+0.07,z1],[x2,y1,z1],
+													[x2,y1,z2],[x2-0.07,y2+0.07,z2],[x1,y2,z2],[x1+0.07,y1-0.07,z2]],[0.5,0.5,0.5,1],[
+													coord4_ccw(1,1,2,2),coord4_ccw(1,1,2,2),coord4_ccw(1,1,2,2),
+													coord4_ccw(1,1,2,2),coord4_ccw(1,1,2,2),coord4_ccw(1,1,2,2),
+		]));
+	};
+	{/* ribbon21 */
+		let x1=-0.20;
+		let y1=0.7;
+		let z1=-0.14;
+		let x2=0.0;
+		let y2=0.6;
+		let z2=z1-0.04;
+		rn_body.add_polygon(cube([[x1,y1,z1],[x1-0.07,y2,z1],[x2-0.07,y2,z1],[x2,y1,z1],
+													[x2,y1,z2],[x2-0.07,y2,z2],[x1-0.07,y2,z2],[x1,y1,z2]],[0.5,0.5,0.5,1],[
+													coord4_ccw(1,1,2,2),coord4_ccw(1,1,2,2),coord4_ccw(1,1,2,2),
+													coord4_ccw(1,1,2,2),coord4_ccw(1,1,2,2),coord4_ccw(1,1,2,2),
+		]));
+	};
+	{/* ribbon22 */
+		let x1=0;
+		let y1=0.7;
+		let z1=-0.14;
+		let x2=0.2;
+		let y2=0.6;
+		let z2=z1-0.04;
+		rn_body.add_polygon(cube([[x1,y1,z1],[x1+0.07,y2,z1],[x2+0.07,y2,z1],[x2,y1,z1],
+													[x2,y1,z2],[x2+0.07,y2,z2],[x1+0.07,y2,z2],[x1,y1,z2]],[0.5,0.5,0.5,1],[
+													coord4_ccw(1,1,2,2),coord4_ccw(1,1,2,2),coord4_ccw(1,1,2,2),
+													coord4_ccw(1,1,2,2),coord4_ccw(1,1,2,2),coord4_ccw(1,1,2,2),
+		]));
+	};
+	function vec_rotz(x,y,z,cx,cy,cz,deg){
+		return [(x)*Math.cos(deg*Math.PI/180)-(y)*Math.sin(deg*Math.PI/180)+cx,(x)*Math.sin(deg*Math.PI/180)+(y)*Math.cos(deg*Math.PI/180)+cy,z];
+	}
+	function vec_roty(x,y,z,cx,cy,cz,deg){
+		return [(x)*Math.cos(deg*Math.PI/180)+(z)*Math.sin(deg*Math.PI/180)+cx,y,-(x)*Math.sin(deg*Math.PI/180)+(z)*Math.cos(deg*Math.PI/180)+cz];
+	}
+	{/* foot1 */
+		let x1=-0.16;
+		let y1=0.5;
+		let z1=0.07;
+		let x2=-0.02;
+		let y2=0.02;
+		let z2=-z1;
+		rn_leg1.add_polygon(cube([[x1,y1,z1],[x1,y2,z1],[x2,y2,z1],[x2,y1,z1],
+													[x2,y1,z2],[x2,y2,z2],[x1,y2,z2],[x1,y1,z2]],[0.5,0.5,0.5,1],[
+														coord4_ccw(9,1,14,6),coord4_ccw(9,1,14,6),coord4_ccw(9,1,14,6),
+														coord4_ccw(9,1,14,6),coord4_ccw(9,1,14,6),coord4_ccw(9,1,14,6),
+		]));
+	};
+	{/* Shoe1 */
+		let x1=-0.17;
+		let y1=0.08;
+		let z1=0.14;
+		let x2=-0.01;
+		let y2=0.00;
+		let z2=-0.08;
+		rn_leg1.add_polygon(cube([[x1,y1,z1],[x1,y2,z1],[x2,y2,z1],[x2,y1,z1],
+													[x2,y1,z2],[x2,y2,z2],[x1,y2,z2],[x1,y1,z2]],[0.5,0.5,0.5,1],[
+														coord4_ccw(67,1,68,2),coord4_ccw(67,1,68,2),coord4_ccw(67,1,68,2),
+														coord4_ccw(67,1,68,2),coord4_ccw(67,1,68,2),coord4_ccw(67,1,68,2),
+		]));
+	};
+	{/* Shoe1_ */
+		let x1=-0.17;
+		let y1=0.10;
+		let z1=0.08;
+		let x2=-0.01;
+		let y2=0.08;
+		let z2=-0.08;
+		rn_leg1.add_polygon(cube([[x1,y1,z1],[x1,y2,z1],[x2,y2,z1],[x2,y1,z1],
+													[x2,y1,z2],[x2,y2,z2],[x1,y2,z2],[x1,y1,z2]],[0.5,0.5,0.5,1],[
+														coord4_ccw(1,1,2,2),coord4_ccw(1,1,2,2),coord4_ccw(1,1,2,2),
+														coord4_ccw(1,1,2,2),coord4_ccw(1,1,2,2),coord4_ccw(1,1,2,2),
+		]));
+	};
+	{/* Shoe1__ */
+		let x1=-0.17;
+		let y1=0.12;
+		let z1=0.08;
+		let x2=-0.01;
+		let y2=0.10;
+		let z2=-0.08;
+		rn_leg1.add_polygon(cube([[x1,y1,z1],[x1,y2,z1],[x2,y2,z1],[x2,y1,z1],
+													[x2,y1,z2],[x2,y2,z2],[x1,y2,z2],[x1,y1,z2]],[0.5,0.5,0.5,1],[
+														coord4_ccw(25,1,26,2),coord4_ccw(25,1,26,2),coord4_ccw(25,1,26,2),
+														coord4_ccw(25,1,26,2),coord4_ccw(25,1,26,2),coord4_ccw(25,1,26,2),
+		]));
+	};
+	{/* foot2 */
+		let x1=0.02;
+		let y1=0.5;
+		let z1=0.07;
+		let x2=0.16;
+		let y2=0.02;
+		let z2=-z1;
+		rn_leg2.add_polygon(cube([[x1,y1,z1],[x1,y2,z1],[x2,y2,z1],[x2,y1,z1],
+													[x2,y1,z2],[x2,y2,z2],[x1,y2,z2],[x1,y1,z2]],[0.5,0.5,0.5,1],[
+														coord4_ccw(9,1,14,6),coord4_ccw(9,1,14,6),coord4_ccw(9,1,14,6),
+														coord4_ccw(9,1,14,6),coord4_ccw(9,1,14,6),coord4_ccw(9,1,14,6),
+		]));
+	};
+	{/* Shoe2 */
+		let x1=0.01;
+		let y1=0.08;
+		let z1=0.14;
+		let x2=0.17;
+		let y2=0.00;
+		let z2=-0.08;
+		rn_leg2.add_polygon(cube([[x1,y1,z1],[x1,y2,z1],[x2,y2,z1],[x2,y1,z1],
+													[x2,y1,z2],[x2,y2,z2],[x1,y2,z2],[x1,y1,z2]],[0.5,0.5,0.5,1],[
+														coord4_ccw(67,1,68,2),coord4_ccw(67,1,68,2),coord4_ccw(67,1,68,2),
+														coord4_ccw(67,1,68,2),coord4_ccw(67,1,68,2),coord4_ccw(67,1,68,2),
+		]));
+	};
+	{/* Shoe2_ */
+		let x1=0.01;
+		let y1=0.10;
+		let z1=0.08;
+		let x2=0.17;
+		let y2=0.08;
+		let z2=-0.08;
+		rn_leg2.add_polygon(cube([[x1,y1,z1],[x1,y2,z1],[x2,y2,z1],[x2,y1,z1],
+													[x2,y1,z2],[x2,y2,z2],[x1,y2,z2],[x1,y1,z2]],[0.5,0.5,0.5,1],[
+														coord4_ccw(1,1,2,2),coord4_ccw(1,1,2,2),coord4_ccw(1,1,2,2),
+														coord4_ccw(1,1,2,2),coord4_ccw(1,1,2,2),coord4_ccw(1,1,2,2),
+		]));
+	};
+	{/* Shoe2__ */
+		let x1=0.01;
+		let y1=0.12;
+		let z1=0.08;
+		let x2=0.17;
+		let y2=0.10;
+		let z2=-0.08;
+		rn_leg2.add_polygon(cube([[x1,y1,z1],[x1,y2,z1],[x2,y2,z1],[x2,y1,z1],
+													[x2,y1,z2],[x2,y2,z2],[x1,y2,z2],[x1,y1,z2]],[0.5,0.5,0.5,1],[
+														coord4_ccw(25,1,26,2),coord4_ccw(25,1,26,2),coord4_ccw(25,1,26,2),
+														coord4_ccw(25,1,26,2),coord4_ccw(25,1,26,2),coord4_ccw(25,1,26,2),
+		]));
+	};
+	{/* arm1 */
+		let x1=-0.32;
+		let y1=1.04;
+		let z1=0.06;
+		let x2=-0.2;
+		let y2=0.7;
+		let z2=-z1;
+		rn_arm1.add_polygon(cube([[x1,y1,z1],[x1,y2,z1],[x2,y2,z1],[x2,y1,z1],
+													[x2,y1,z2],[x2,y2,z2],[x1,y2,z2],[x1,y1,z2]],[0.5,0.5,0.5,1],[
+													coord4_ccw(9,1,14,6),coord4_ccw(9,1,14,6),coord4_ccw(9,1,14,6),
+													coord4_ccw(9,1,14,6),coord4_ccw(9,1,14,6),coord4_ccw(9,1,14,6),
+		]));
+	};
+	{/* arm2 */
+		let x1=0.2;
+		let y1=1.04;
+		let z1=0.06;
+		let x2=0.32;
+		let y2=0.7;
+		let z2=-z1;
+		rn_arm2.add_polygon(cube([[x1,y1,z1],[x1,y2,z1],[x2,y2,z1],[x2,y1,z1],
+													[x2,y1,z2],[x2,y2,z2],[x1,y2,z2],[x1,y1,z2]],[0.5,0.5,0.5,1],[
+													coord4_ccw(9,1,14,6),coord4_ccw(9,1,14,6),coord4_ccw(9,1,14,6),
+													coord4_ccw(9,1,14,6),coord4_ccw(9,1,14,6),coord4_ccw(9,1,14,6),
+		]));
+	};
+	grp.add_polygon(cube([[-0.7/2+2,1.50,0.3/2],[-0.7/2+2,0,0.3/2],[0.7/2+2,0,0.3/2],[0.7/2+2,1.50,0.3/2],
+												[0.7/2+2,1.50,-0.3/2],[0.7/2+2,0,-0.3/2],[-0.7/2+2,0,-0.3/2],[-0.7/2+2,1.50,-0.3/2]],[0.5,0.5,0.5,1],[
+												coord4_ccw(0,0,1,1),coord4_ccw(0,0,1,1),coord4_ccw(0,0,1,1),
+												coord4_ccw(0,0,1,1),coord4_ccw(0,0,1,1),coord4_ccw(0,0,1,1),
+	]));
+
+objs.add_group(grp);
+	objs.add_group(grp1);
+	objs.add_group(rn_head1);
+	objs.add_group(rn_head2);
+
+	objs.add_group(rn_body);
+	objs.add_group(rn_arm1);
+	objs.add_group(rn_arm2);
+	objs.add_group(rn_leg1);
+	objs.add_group(rn_leg2);
+	objs.add_group(wall);
+	objs.final();
+	window.requestAnimationFrame(draw);
+};
+var t=0;
+var rn_posx=0.0;
+var rn_posy=0.0;
+var rn_posz=0.0;
+var rn_rotx=0.0;
+var rn_roty=0.0;
+var rn_rotz=0.0;
+var rn_speed=0.05;
+var rn_rotspeed=90.0*Math.PI/180.0;
+var cam_mode=1;
+var head_mode=1;
+function draw(timestamp){
+	dt=delta_time(timestamp);
+	t+=dt;
+	cls(0.3, .5, .8, 1.0);
+	if(f_loading_tex==false){loop_end(draw);return;}
+
+	model_reset();
+	wall.draw_polygon();
+
+if(rn_command==5){
+	rn_roty+=rn_rotspeed;
+	rn_deg+=dt*350;
+}
+if(rn_command==6){
+	rn_roty-=rn_rotspeed;
+	rn_deg+=dt*350;
+}
+if(rn_command==0){
+	rn_deg=0;
+}
+if(rn_command==1){
+	rn_posx+=rn_speed*Math.sin(rn_roty*Math.PI/180.0);
+	rn_posz+=rn_speed*Math.cos(rn_roty*Math.PI/180.0);
+	rn_deg+=dt*350;
+}
+
+if(rn_command==2){
+	rn_posx-=rn_speed*Math.sin(rn_roty*Math.PI/180.0);
+	rn_posz-=rn_speed*Math.cos(rn_roty*Math.PI/180.0);
+	rn_deg+=dt*350;
+}
+if(rn_command==3){
+	rn_posx+=rn_speed*Math.sin((rn_roty+90)*Math.PI/180.0);
+	rn_posz+=rn_speed*Math.cos((rn_roty+90)*Math.PI/180.0);
+	rn_deg+=dt*350;
+}
+if(rn_command==4){
+	rn_posx+=rn_speed*Math.sin((rn_roty-90)*Math.PI/180.0);
+	rn_posz+=rn_speed*Math.cos((rn_roty-90)*Math.PI/180.0);
+	rn_deg+=dt*350;
+}
+if(rn_command==11){
+	cam_mode=1;
+}
+if(rn_command==12){
+	cam_mode=2;
+}
+if(rn_command==13){
+	cam_mode=3;
+}
+if(rn_command==14){
+	cam_mode=4;
+}
+if(rn_command==15){
+	cam_mode=5;
+}
+if(rn_command==16){
+	rn_command=0;
+
+	if(head_mode==1){
+		head_mode=2;
+	}else{
+		head_mode=1;
+	}
+
+}
+if(cam_mode==1){
+	look_at([rn_posx-2*Math.sin(rn_roty*Math.PI/180.0),rn_posy+2,rn_posz-2*Math.cos(rn_roty*Math.PI/180.0)], [rn_posx+100*Math.sin(rn_roty*Math.PI/180.0),rn_posy,rn_posz+100*Math.cos(rn_roty*Math.PI/180.0)], [0, 1, 0]);
+}
+if(cam_mode==2){
+	look_at([rn_posx-1.5*Math.sin((rn_roty-150)*Math.PI/180.0),rn_posy+0.2,rn_posz-1.5*Math.cos((rn_roty-150)*Math.PI/180.0)], [rn_posx,rn_posy+1,rn_posz], [0, 1, 0]);
+}
+if(cam_mode==3){
+	if(Math.sqrt(rn_posx*rn_posx+rn_posz*rn_posz)<0.001){
+		look_at([rn_posx-2*Math.sin(rn_roty*Math.PI/180.0),rn_posy+2,rn_posz-2*Math.cos(rn_roty*Math.PI/180.0)], [rn_posx+100*Math.sin(rn_roty*Math.PI/180.0),rn_posy,rn_posz+100*Math.cos(rn_roty*Math.PI/180.0)], [0, 1, 0]);
+	}else{
+	look_at([0,2,0], [rn_posx,rn_posy+1,rn_posz], [0, 1, 0]);
+}
+}
+if(cam_mode==4){
+	look_at([12,12,0], [rn_posx,rn_posy+1,rn_posz], [0, 1, 0]);
+}
+if(cam_mode==5){
+	look_at([2*Math.sin(deg*Math.PI/180)+rn_posx,1.5+rn_posy+1.3*Math.sin(deg/2.111*Math.PI/180),2*Math.cos(deg*Math.PI/180)+rn_posz], [rn_posx,rn_posy+1,rn_posz], [0, 1, 0]);
+}
+	//rn_posx=0;
+	//rn_posy=0;
+	//rn_posz=0;
+	//rn_roty=t*50;
+
+	model_reset();
+	model_translate([rn_posx,rn_posy,rn_posz]);
+	model_rotate(rn_roty*Math.PI/180, [0,1,0]);
+	rn_body.draw_polygon();
+
+	if(head_mode==1){
+		rn_head1.draw_polygon();
+	}
+
+	if(head_mode==2){
+		rn_head2.draw_polygon();
+	}
+
+	model_reset();
+	model_translate([rn_posx,rn_posy,rn_posz]);
+	model_rotate(rn_roty*Math.PI/180, [0,1,0]);
+	model_translate([-0.26,+1.04-0.06,0]);
+	model_rotate(Math.sin(rn_deg*Math.PI/180)*30*Math.PI/180, [1,0,0]);
+	model_rotate(-15*Math.PI/180, [0,0,1]);
+	model_translate([+0.26,-1.04+0.06,0]);
+	rn_arm1.draw_polygon();
+
+	model_reset();
+	model_translate([rn_posx,rn_posy,rn_posz]);
+	model_rotate(rn_roty*Math.PI/180, [0,1,0]);
+	model_translate([+0.26,+1.04-0.06,0]);
+	model_rotate(-Math.sin(rn_deg*Math.PI/180)*30*Math.PI/180, [1,0,0]);
+	model_rotate(15*Math.PI/180, [0,0,1]);
+	model_translate([-0.26,-1.04+0.06,0]);
+	rn_arm2.draw_polygon();
+
+	model_reset();
+	model_translate([rn_posx,rn_posy,rn_posz]);
+	model_rotate(rn_roty*Math.PI/180, [0,1,0]);
+	model_translate([-0.09,+0.5-0.07,0]);
+	model_rotate(-Math.sin(rn_deg*Math.PI/180)*30*Math.PI/180, [1,0,0]);
+	model_translate([+0.09,-0.5+0.07,0]);
+	rn_leg1.draw_polygon();
+
+	model_reset();
+	model_translate([rn_posx,rn_posy,rn_posz]);
+	model_rotate(rn_roty*Math.PI/180, [0,1,0]);
+	model_translate([+0.09,+0.5-0.07,0]);
+	model_rotate(Math.sin(rn_deg*Math.PI/180)*30*Math.PI/180, [1,0,0]);
+	model_translate([-0.09,-0.5+0.07,0]);
+	rn_leg2.draw_polygon();
+/*
+	model_reset();
+	model_translate([1.5,0,0]);
+	model_rotate(deg*Math.PI/180, [-1,1,0]);
+
+	grp1.draw_polygon();*/
+
+deg+=dt*40;
+	loop_end(draw);
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function delta_time(timestamp){
+	if(old_timestamp==0){old_timestamp=timestamp;}
+	var dt = (timestamp - old_timestamp)/1000;
+	old_timestamp = timestamp;
+
+	return dt;
+}
+function cls(r,g,b,a){
+	gl.clearColor(r,g,b,a);
+	gl.clear(gl.COLOR_BUFFER_BIT);
+	gl.bindTexture(gl.TEXTURE_2D, texture);
+}
+function loop_end(func){
+	gl.flush();
+	window.requestAnimationFrame(func);
+}
+function model_reset(){
+	mMatrix = m.identity(m.create());
+}
+function model_rotate(rad, axis){
+	m.rotate(mMatrix, rad, axis, mMatrix);
+}
+function model_translate(move){
+	m.translate(mMatrix, move, mMatrix);
+}
+function model_scale(scale){
+	m.translate(mMatrix, scale, mMatrix);
+}
+function look_at(cam_pos, dist_pos, upside){
+	m.lookAt(cam_pos, dist_pos, upside, vMatrix);
+	m.perspective(90, c.width / c.height, 0.1, 100, pMatrix);
+	m.multiply(pMatrix, vMatrix, vpMatrix);
+	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER,  gl.LINEAR	);
+	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.NEAREST);
+}
+function triangle(pos,color,coord){
+	var v = calc_norm(pos);
+	var point1=new point([pos[0],pos[1],pos[2]],v,color,[coord[0],coord[1]]);
+	var point2=new point([pos[3],pos[4],pos[5]],v,color,[coord[2],coord[3]]);
+	var point3=new point([pos[6],pos[7],pos[8]],v,color,[coord[4],coord[5]]);
+	return new polygon([point1,point2,point3],[0,1,2]);
+}
+function tetragon(pos,color,coord){
+	var v1 = calc_norm([pos[0],pos[1],pos[2],pos[3],pos[4],pos[5],pos[9],pos[10],pos[11]]);
+	var v2 = calc_norm([pos[3],pos[4],pos[5],pos[6],pos[7],pos[8],pos[0],pos[1],pos[2]]);
+	var v3 = calc_norm([pos[6],pos[7],pos[8],pos[9],pos[10],pos[11],pos[3],pos[4],pos[5]]);
+	var v4 = calc_norm([pos[9],pos[10],pos[11],pos[0],pos[1],pos[2],pos[6],pos[7],pos[8]]);
+	var point1=new point([pos[0],pos[1],pos[2]],v1,color,[coord[0],coord[1]]);
+	var point2=new point([pos[3],pos[4],pos[5]],v2,color,[coord[2],coord[3]]);
+	var point3=new point([pos[6],pos[7],pos[8]],v3,color,[coord[4],coord[5]]);
+	var point4=new point([pos[9],pos[10],pos[11]],v4,color,[coord[6],coord[7]]);
+	return new polygon([point1,point2,point3,point4],[0,1,3,2,3,1]);
+}
+function calc_norm(pos){
+	var a1=(pos[3]-pos[0]);
+	var a2=(pos[4]-pos[1]);
+	var a3=(pos[5]-pos[2]);
+	var b1=(pos[6]-pos[3]);
+	var b2=(pos[7]-pos[4]);
+	var b3=(pos[8]-pos[5]);
+	var v1_=a2*b3-a3*b2;
+	var v2_=a3*b1-a1*b3;
+	var v3_=a1*b2-a2*b1;
+	var inv_len=1.0/Math.sqrt(v1_*v1_+v2_*v2_+v3_*v3_);
+	return [v1_*inv_len,v2_*inv_len,v3_*inv_len];
+}
+function coord3(x1,y1,x2,y2,x3,y3){
+	var tex_size=2048;
+	return [[x1/tex_size,y1/tex_size],[x2/tex_size,y2/tex_size],[x3/tex_size,y3/tex_size]];
+}
+function coord4_ccw(x1,y1,x2,y2){
+	var tex_size=2048;
+	if((x1<x2 && y1>y2)||(x1>x2 && y1<y2)){
+		return [[x1/tex_size,y1/tex_size],[x2/tex_size,y1/tex_size],[x2/tex_size,y2/tex_size],[x1/tex_size,y2/tex_size]];
+	}
+	return [[x1/tex_size,y1/tex_size],[x1/tex_size,y2/tex_size],[x2/tex_size,y2/tex_size],[x2/tex_size,y1/tex_size]];
+}
+function coord4_cw(x1,y1,x2,y2){
+	var tex_size=2048;
+	if((x1<x2 && y1>y2)||(x1>x2 && y1<y2)){
+		return [[x1/tex_size,y1/tex_size],[x1/tex_size,y2/tex_size],[x2/tex_size,y2/tex_size],[x2/tex_size,y1/tex_size]];
+	}
+	return [[x1/tex_size,y1/tex_size],[x2/tex_size,y1/tex_size],[x2/tex_size,y2/tex_size],[x1/tex_size,y2/tex_size]];
+}
+function coord4(x1,y1,x2,y2,x3,y3,x4,y4){
+	var tex_size=2048;
+	return [[x1/tex_size,y1/tex_size],[x2/tex_size,y2/tex_size],[x3/tex_size,y3/tex_size],[x4/tex_size,y4/tex_size]];
+}
+function cube(pos,color,coord){
+	//正
+	var p1=tetragon([ pos[0][0], pos[0][1], pos[0][2],
+		  							pos[1][0], pos[1][1], pos[1][2],
+										pos[2][0], pos[2][1], pos[2][2],
+										pos[3][0], pos[3][1], pos[3][2]], color,[
+										coord[0][0][0], coord[0][0][1],
+										coord[0][1][0], coord[0][1][1],
+										coord[0][2][0], coord[0][2][1],
+										coord[0][3][0], coord[0][3][1]]);
+	//上
+	var p2=tetragon([ pos[7][0], pos[7][1], pos[7][2],
+		  							pos[0][0], pos[0][1], pos[0][2],
+										pos[3][0], pos[3][1], pos[3][2],
+										pos[4][0], pos[4][1], pos[4][2]], color,[
+										coord[1][0][0], coord[1][0][1],
+										coord[1][1][0], coord[1][1][1],
+										coord[1][2][0], coord[1][2][1],
+										coord[1][3][0], coord[1][3][1]]);
+	//背
+	var p3=tetragon([ pos[4][0], pos[4][1], pos[4][2],
+		  							pos[5][0], pos[5][1], pos[5][2],
+										pos[6][0], pos[6][1], pos[6][2],
+										pos[7][0], pos[7][1], pos[7][2]], color,[
+										coord[2][0][0], coord[2][0][1],
+										coord[2][1][0], coord[2][1][1],
+										coord[2][2][0], coord[2][2][1],
+										coord[2][3][0], coord[2][3][1]]);
+	//右
+	var p4=tetragon([ pos[3][0], pos[3][1], pos[3][2],
+		  							pos[2][0], pos[2][1], pos[2][2],
+										pos[5][0], pos[5][1], pos[5][2],
+										pos[4][0], pos[4][1], pos[4][2]], color,[
+										coord[3][0][0], coord[3][0][1],
+										coord[3][1][0], coord[3][1][1],
+										coord[3][2][0], coord[3][2][1],
+										coord[3][3][0], coord[3][3][1]]);
+	//左
+	var p5=tetragon([ pos[7][0], pos[7][1], pos[7][2],
+		  							pos[6][0], pos[6][1], pos[6][2],
+										pos[1][0], pos[1][1], pos[1][2],
+										pos[0][0], pos[0][1], pos[0][2]], color,[
+										coord[4][0][0], coord[4][0][1],
+										coord[4][1][0], coord[4][1][1],
+										coord[4][2][0], coord[4][2][1],
+										coord[4][3][0], coord[4][3][1]]);
+	//底
+	var p6=tetragon([ pos[1][0], pos[1][1], pos[1][2],
+		  							pos[6][0], pos[6][1], pos[6][2],
+										pos[5][0], pos[5][1], pos[5][2],
+										pos[2][0], pos[2][1], pos[2][2]], color,[
+										coord[5][0][0], coord[5][0][1],
+										coord[5][1][0], coord[5][1][1],
+										coord[5][2][0], coord[5][2][1],
+										coord[5][3][0], coord[5][3][1]]);
+	return merge_polygon(merge_polygon(merge_polygon(merge_polygon(merge_polygon(p1,p2),p3),p4),p5),p6);
+}
+function merge_polygon(p1,p2){
+	var i;
+	var count=0;
+	var points=new Array();
+	var index=new Array();
+	for(i=0;i<p1.points.length;i++){
+		points.push(p1.points[i]);
+	}
+	count+=i;
+	for(let i=0;i<p1.index.length;i++){
+		index.push(p1.index[i]);
+	}
+	for(i=0;i<p2.points.length;i++){
+		points.push(p2.points[i]);
+	}
+	for(let i=0;i<p2.index.length;i++){
+		index.push(p2.index[i]+count);
+	}
+	return new polygon(points, index);
+}
+function objects(){
+	this.count=0;
+	this.len=0;
+	this.pos=new Array();
+	this.norm=new Array();
+	this.color=new Array();
+	this.texture_coord=new Array();
+	this.index=new Array();
+
+}
+objects.prototype.add_group=function(group){
+
+	var i;
+	var count_old=this.count;
+	group.count_draw=this.len;
+
+
+	for(i=0;i<group.points.length;i++){
+		this.pos.push(group.points[i].pos[0]);
+		this.pos.push(group.points[i].pos[1]);
+		this.pos.push(group.points[i].pos[2]);
+		this.norm.push(group.points[i].norm[0]);
+		this.norm.push(group.points[i].norm[1]);
+		this.norm.push(group.points[i].norm[2]);
+		this.color.push(group.points[i].color[0]);
+		this.color.push(group.points[i].color[1]);
+		this.color.push(group.points[i].color[2]);
+		this.color.push(group.points[i].color[3]);
+		this.texture_coord.push(group.points[i].texture_coord[0]);
+		this.texture_coord.push(group.points[i].texture_coord[1]);
+	}
+
+	this.count+=i;
+	for(i=0;i<group.index.length;i++){
+		this.index.push(group.index[i]+count_old);
+	}
+	group.len=i;
+	this.len+=group.len;
+};
+objects.prototype.final=function(){
+	// attributeLocationを配列に取得
+	var attLocation = new Array(3);
+	attLocation[0] = gl.getAttribLocation(program, 'position');
+	attLocation[1] = gl.getAttribLocation(program, 'aVertexNormal');
+	attLocation[2] = gl.getAttribLocation(program, 'color');
+	attLocation[3] = gl.getAttribLocation(program, 'texture_coord');
+
+	// attributeの要素数を配列に格納
+	var attStride = new Array(3);
+	attStride[0] = 3;
+	attStride[1] = 3;
+	attStride[2] = 4;
+	attStride[3] = 2;
+
+	// VBOの生成
+	var position_vbo = create_vbo(this.pos);
+	var normal_vbo = create_vbo(this.norm);
+	var color_vbo = create_vbo(this.color);
+	var vertex_texture_coord_vbo = create_vbo(this.texture_coord);
+
+	// VBOをバインドし登録する(位置情報)
+	gl.bindBuffer(gl.ARRAY_BUFFER, position_vbo);
+	gl.enableVertexAttribArray(attLocation[0]);
+	gl.vertexAttribPointer(attLocation[0], attStride[0], gl.FLOAT, false, 0, 0);
+	// VBOをバインドし登録する(法線情報)
+	gl.bindBuffer(gl.ARRAY_BUFFER, normal_vbo);
+	gl.enableVertexAttribArray(attLocation[1]);
+	gl.vertexAttribPointer(attLocation[1], attStride[1], gl.FLOAT, false, 0, 0);
+	// VBOをバインドし登録する(色情報)
+	gl.bindBuffer(gl.ARRAY_BUFFER, color_vbo);
+	gl.enableVertexAttribArray(attLocation[2]);
+	gl.vertexAttribPointer(attLocation[2], attStride[2], gl.FLOAT, false, 0, 0);
+	// VBOをバインドし登録する(テクスチャ情報)
+	gl.bindBuffer(gl.ARRAY_BUFFER, vertex_texture_coord_vbo);
+	gl.enableVertexAttribArray(attLocation[3]);
+	gl.vertexAttribPointer(attLocation[3], attStride[3], gl.FLOAT, false, 0, 0);
+
+	// IBOの生成
+	 var ibo = create_ibo(this.index);
+
+	 // IBOをバインドして登録する
+	 gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, ibo);
+};
+
+function group(){
+	this.count=0;
+	this.count_draw=0;
+	this.len=0;
+	this.points=new Array();
+	this.index=new Array();
+}
+group.prototype.add_polygon=function(polygon){
+
+	var i;
+	var count_old=this.count;
+	for(i=0;i<polygon.points.length;i++){
+		this.points.push(polygon.points[i]);
+	}
+	this.count+=i;
+	for(let i=0;i<polygon.index.length;i++){
+		this.index.push(polygon.index[i]+count_old);
+	}
+};
+group.prototype.draw_polygon=function(){
+	//alert(""+this.len+", "+this.count_draw);
+	m.multiply(vpMatrix, mMatrix, mvpMatrix);
+	//m.multiply(vMatrix, mMatrix, mvMatrix);
+	m.inverse(mMatrix,inv_mMatrix);
+
+	gl.uniformMatrix4fv(uniLocation[0], false, mvpMatrix);
+	gl.uniformMatrix4fv(uNormalMatrix, false, inv_mMatrix);
+
+
+
+
+	gl.drawElements(gl.TRIANGLES, this.len, gl.UNSIGNED_SHORT, this.count_draw*2);
+
+	//alert(this.count_draw);
+}
+function polygon(points,index){
+	this.points=points;
+	this.index=index;
+}
+function point(pos,norm,color,texture_coord){
+	this.pos=pos;
+	this.norm=norm;
+	this.color=color;
+	this.texture_coord=texture_coord;
+}
+function init_gl(){
+	m = new matIV();
+	mMatrix= m.identity(m.create());
+	vMatrix= m.identity(m.create());
+	pMatrix= m.identity(m.create());
+	mvpMatrix= m.identity(m.create());
+	mvMatrix= m.identity(m.create());
+	vpMatrix= m.identity(m.create());
+	inv_mMatrix= m.identity(m.create());
+	c = document.getElementById('glcanvas');
+	c.width = 800; c.height = 600;
+
+	gl = c.getContext('webgl') || c.getContext('experimental-webgl');
+	//alert(gl.getParameter(gl.MAX_COMBINED_TEXTURE_IMAGE_UNITS));
+	gl.enable(gl.CULL_FACE);
+	gl.enable(gl.DEPTH_TEST);
+	gl.depthFunc(gl.LEQUAL);
+	gl.enable(gl.BLEND);
+	gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+
+
+	var vertex_shader_code;
+	var fragment_shader_code;
+	var vertex_shader;
+	var fragment_shader;
+
+	vertex_shader_code = document.getElementById('vertex_shader_code').text;
+	fragment_shader_code = document.getElementById('fragment_shader_code').text;
+
+	vertex_shader = gl.createShader(gl.VERTEX_SHADER);
+	fragment_shader = gl.createShader(gl.FRAGMENT_SHADER);
+
+	gl.shaderSource(vertex_shader, vertex_shader_code);
+	gl.shaderSource(fragment_shader, fragment_shader_code);
+	gl.compileShader(vertex_shader);
+	gl.compileShader(fragment_shader);
+
+	// コンパイルチェック
+	if(gl.getShaderParameter(vertex_shader, gl.COMPILE_STATUS)){
+		//alert("Compile OK vertex_shader");
+	}else{
+		alert(gl.getShaderInfoLog(vertex_shader));
+	}
+	if(gl.getShaderParameter(fragment_shader, gl.COMPILE_STATUS)){
+		//alert("Compile OK fragment_shader");
+	}else{
+		alert(gl.getShaderInfoLog(fragment_shader));
+	}
+	program = gl.createProgram();
+
+	gl.attachShader(program, vertex_shader);
+	gl.attachShader(program, fragment_shader);
+	gl.linkProgram(program);
+
+	// リンクチェック
+	if(gl.getProgramParameter(program, gl.LINK_STATUS)){
+			gl.useProgram(program);
+	}else{
+			alert(gl.getProgramInfoLog(program));
+	}
+	// テクスチャ用変数の宣言
+	texture = null;
+
+	// テクスチャを生成
+	create_texture('t.png');
+
+	uniLocation[0] = gl.getUniformLocation(program, 'mvpMatrix');
+	uNormalMatrix = gl.getUniformLocation(program, 'uNormalMatrix');
+	uniLocation[1]  = gl.getUniformLocation(program, 'texture');
+	gl.activeTexture(gl.TEXTURE0);
+	gl.uniform1i(uniLocation[1], 0);
+
+
+}
+
+
+
+function create_vbo(data){
+
+		var vbo = gl.createBuffer();
+		gl.bindBuffer(gl.ARRAY_BUFFER, vbo);
+		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(data), gl.STATIC_DRAW);
+		gl.bindBuffer(gl.ARRAY_BUFFER, null);
+		return vbo;
+}
+function create_ibo(data){
+		var ibo = gl.createBuffer();
+		gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, ibo);
+		gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Int16Array(data), gl.STATIC_DRAW);
+		gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, null);
+		return ibo;
+}
+function create_texture(source){
+    var img = new Image();
+    img.onload = function(){
+        var tex = gl.createTexture();
+        gl.bindTexture(gl.TEXTURE_2D, tex);
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, img);
+        gl.generateMipmap(gl.TEXTURE_2D);
+        gl.bindTexture(gl.TEXTURE_2D, null);
+        texture = tex;
+				f_loading_tex=true;
+    };
+    img.src = source;
+}
+</script>
+<script>
+function matIV(){
+	this.create = function(){
+		return new Float32Array(16);
+	};
+	this.identity = function(dest){
+		dest[0]  = 1; dest[1]  = 0; dest[2]  = 0; dest[3]  = 0;
+		dest[4]  = 0; dest[5]  = 1; dest[6]  = 0; dest[7]  = 0;
+		dest[8]  = 0; dest[9]  = 0; dest[10] = 1; dest[11] = 0;
+		dest[12] = 0; dest[13] = 0; dest[14] = 0; dest[15] = 1;
+		return dest;
+	};
+	this.multiply = function(mat1, mat2, dest){
+		var a = mat1[0],  b = mat1[1],  c = mat1[2],  d = mat1[3],
+			e = mat1[4],  f = mat1[5],  g = mat1[6],  h = mat1[7],
+			i = mat1[8],  j = mat1[9],  k = mat1[10], l = mat1[11],
+			m = mat1[12], n = mat1[13], o = mat1[14], p = mat1[15],
+			A = mat2[0],  B = mat2[1],  C = mat2[2],  D = mat2[3],
+			E = mat2[4],  F = mat2[5],  G = mat2[6],  H = mat2[7],
+			I = mat2[8],  J = mat2[9],  K = mat2[10], L = mat2[11],
+			M = mat2[12], N = mat2[13], O = mat2[14], P = mat2[15];
+		dest[0] = A * a + B * e + C * i + D * m;
+		dest[1] = A * b + B * f + C * j + D * n;
+		dest[2] = A * c + B * g + C * k + D * o;
+		dest[3] = A * d + B * h + C * l + D * p;
+		dest[4] = E * a + F * e + G * i + H * m;
+		dest[5] = E * b + F * f + G * j + H * n;
+		dest[6] = E * c + F * g + G * k + H * o;
+		dest[7] = E * d + F * h + G * l + H * p;
+		dest[8] = I * a + J * e + K * i + L * m;
+		dest[9] = I * b + J * f + K * j + L * n;
+		dest[10] = I * c + J * g + K * k + L * o;
+		dest[11] = I * d + J * h + K * l + L * p;
+		dest[12] = M * a + N * e + O * i + P * m;
+		dest[13] = M * b + N * f + O * j + P * n;
+		dest[14] = M * c + N * g + O * k + P * o;
+		dest[15] = M * d + N * h + O * l + P * p;
+		return dest;
+	};
+	this.scale = function(mat, vec, dest){
+		dest[0]  = mat[0]  * vec[0];
+		dest[1]  = mat[1]  * vec[0];
+		dest[2]  = mat[2]  * vec[0];
+		dest[3]  = mat[3]  * vec[0];
+		dest[4]  = mat[4]  * vec[1];
+		dest[5]  = mat[5]  * vec[1];
+		dest[6]  = mat[6]  * vec[1];
+		dest[7]  = mat[7]  * vec[1];
+		dest[8]  = mat[8]  * vec[2];
+		dest[9]  = mat[9]  * vec[2];
+		dest[10] = mat[10] * vec[2];
+		dest[11] = mat[11] * vec[2];
+		dest[12] = mat[12];
+		dest[13] = mat[13];
+		dest[14] = mat[14];
+		dest[15] = mat[15];
+		return dest;
+	};
+	this.translate = function(mat, vec, dest){
+		dest[0] = mat[0]; dest[1] = mat[1]; dest[2]  = mat[2];  dest[3]  = mat[3];
+		dest[4] = mat[4]; dest[5] = mat[5]; dest[6]  = mat[6];  dest[7]  = mat[7];
+		dest[8] = mat[8]; dest[9] = mat[9]; dest[10] = mat[10]; dest[11] = mat[11];
+		dest[12] = mat[0] * vec[0] + mat[4] * vec[1] + mat[8]  * vec[2] + mat[12];
+		dest[13] = mat[1] * vec[0] + mat[5] * vec[1] + mat[9]  * vec[2] + mat[13];
+		dest[14] = mat[2] * vec[0] + mat[6] * vec[1] + mat[10] * vec[2] + mat[14];
+		dest[15] = mat[3] * vec[0] + mat[7] * vec[1] + mat[11] * vec[2] + mat[15];
+		return dest;
+	};
+	this.rotate = function(mat, angle, axis, dest){
+		var sq = Math.sqrt(axis[0] * axis[0] + axis[1] * axis[1] + axis[2] * axis[2]);
+		if(!sq){return null;}
+		var a = axis[0], b = axis[1], c = axis[2];
+		if(sq != 1){sq = 1 / sq; a *= sq; b *= sq; c *= sq;}
+		var d = Math.sin(angle), e = Math.cos(angle), f = 1 - e,
+			g = mat[0],  h = mat[1], i = mat[2],  j = mat[3],
+			k = mat[4],  l = mat[5], m = mat[6],  n = mat[7],
+			o = mat[8],  p = mat[9], q = mat[10], r = mat[11],
+			s = a * a * f + e,
+			t = b * a * f + c * d,
+			u = c * a * f - b * d,
+			v = a * b * f - c * d,
+			w = b * b * f + e,
+			x = c * b * f + a * d,
+			y = a * c * f + b * d,
+			z = b * c * f - a * d,
+			A = c * c * f + e;
+		if(angle){
+			if(mat != dest){
+				dest[12] = mat[12]; dest[13] = mat[13];
+				dest[14] = mat[14]; dest[15] = mat[15];
+			}
+		} else {
+			dest = mat;
+		}
+		dest[0] = g * s + k * t + o * u;
+		dest[1] = h * s + l * t + p * u;
+		dest[2] = i * s + m * t + q * u;
+		dest[3] = j * s + n * t + r * u;
+		dest[4] = g * v + k * w + o * x;
+		dest[5] = h * v + l * w + p * x;
+		dest[6] = i * v + m * w + q * x;
+		dest[7] = j * v + n * w + r * x;
+		dest[8] = g * y + k * z + o * A;
+		dest[9] = h * y + l * z + p * A;
+		dest[10] = i * y + m * z + q * A;
+		dest[11] = j * y + n * z + r * A;
+		return dest;
+	};
+	this.lookAt = function(eye, center, up, dest){
+		var eyeX    = eye[0],    eyeY    = eye[1],    eyeZ    = eye[2],
+			upX     = up[0],     upY     = up[1],     upZ     = up[2],
+			centerX = center[0], centerY = center[1], centerZ = center[2];
+		if(eyeX == centerX && eyeY == centerY && eyeZ == centerZ){return this.identity(dest);}
+		var x0, x1, x2, y0, y1, y2, z0, z1, z2, l;
+		z0 = eyeX - center[0]; z1 = eyeY - center[1]; z2 = eyeZ - center[2];
+		l = 1 / Math.sqrt(z0 * z0 + z1 * z1 + z2 * z2);
+		z0 *= l; z1 *= l; z2 *= l;
+		x0 = upY * z2 - upZ * z1;
+		x1 = upZ * z0 - upX * z2;
+		x2 = upX * z1 - upY * z0;
+		l = Math.sqrt(x0 * x0 + x1 * x1 + x2 * x2);
+		if(!l){
+			x0 = 0; x1 = 0; x2 = 0;
+		} else {
+			l = 1 / l;
+			x0 *= l; x1 *= l; x2 *= l;
+		}
+		y0 = z1 * x2 - z2 * x1; y1 = z2 * x0 - z0 * x2; y2 = z0 * x1 - z1 * x0;
+		l = Math.sqrt(y0 * y0 + y1 * y1 + y2 * y2);
+		if(!l){
+			y0 = 0; y1 = 0; y2 = 0;
+		} else {
+			l = 1 / l;
+			y0 *= l; y1 *= l; y2 *= l;
+		}
+		dest[0] = x0; dest[1] = y0; dest[2]  = z0; dest[3]  = 0;
+		dest[4] = x1; dest[5] = y1; dest[6]  = z1; dest[7]  = 0;
+		dest[8] = x2; dest[9] = y2; dest[10] = z2; dest[11] = 0;
+		dest[12] = -(x0 * eyeX + x1 * eyeY + x2 * eyeZ);
+		dest[13] = -(y0 * eyeX + y1 * eyeY + y2 * eyeZ);
+		dest[14] = -(z0 * eyeX + z1 * eyeY + z2 * eyeZ);
+		dest[15] = 1;
+		return dest;
+	};
+	this.perspective = function(fovy, aspect, near, far, dest){
+		var t = near * Math.tan(fovy * Math.PI / 360);
+		var r = t * aspect;
+		var a = r * 2, b = t * 2, c = far - near;
+		dest[0] = near * 2 / a;
+		dest[1] = 0;
+		dest[2] = 0;
+		dest[3] = 0;
+		dest[4] = 0;
+		dest[5] = near * 2 / b;
+		dest[6] = 0;
+		dest[7] = 0;
+		dest[8] = 0;
+		dest[9] = 0;
+		dest[10] = -(far + near) / c;
+		dest[11] = -1;
+		dest[12] = 0;
+		dest[13] = 0;
+		dest[14] = -(far * near * 2) / c;
+		dest[15] = 0;
+		return dest;
+	};
+	this.transpose = function(mat, dest){
+		dest[0]  = mat[0];  dest[1]  = mat[4];
+		dest[2]  = mat[8];  dest[3]  = mat[12];
+		dest[4]  = mat[1];  dest[5]  = mat[5];
+		dest[6]  = mat[9];  dest[7]  = mat[13];
+		dest[8]  = mat[2];  dest[9]  = mat[6];
+		dest[10] = mat[10]; dest[11] = mat[14];
+		dest[12] = mat[3];  dest[13] = mat[7];
+		dest[14] = mat[11]; dest[15] = mat[15];
+		return dest;
+	};
+	this.inverse = function(mat, dest){
+		var a = mat[0],  b = mat[1],  c = mat[2],  d = mat[3],
+			e = mat[4],  f = mat[5],  g = mat[6],  h = mat[7],
+			i = mat[8],  j = mat[9],  k = mat[10], l = mat[11],
+			m = mat[12], n = mat[13], o = mat[14], p = mat[15],
+			q = a * f - b * e, r = a * g - c * e,
+			s = a * h - d * e, t = b * g - c * f,
+			u = b * h - d * f, v = c * h - d * g,
+			w = i * n - j * m, x = i * o - k * m,
+			y = i * p - l * m, z = j * o - k * n,
+			A = j * p - l * n, B = k * p - l * o,
+			ivd = 1 / (q * B - r * A + s * z + t * y - u * x + v * w);
+		dest[0]  = ( f * B - g * A + h * z) * ivd;
+		dest[1]  = (-b * B + c * A - d * z) * ivd;
+		dest[2]  = ( n * v - o * u + p * t) * ivd;
+		dest[3]  = (-j * v + k * u - l * t) * ivd;
+		dest[4]  = (-e * B + g * y - h * x) * ivd;
+		dest[5]  = ( a * B - c * y + d * x) * ivd;
+		dest[6]  = (-m * v + o * s - p * r) * ivd;
+		dest[7]  = ( i * v - k * s + l * r) * ivd;
+		dest[8]  = ( e * A - f * y + h * w) * ivd;
+		dest[9]  = (-a * A + b * y - d * w) * ivd;
+		dest[10] = ( m * u - n * s + p * q) * ivd;
+		dest[11] = (-i * u + j * s - l * q) * ivd;
+		dest[12] = (-e * z + f * x - g * w) * ivd;
+		dest[13] = ( a * z - b * x + c * w) * ivd;
+		dest[14] = (-m * t + n * r - o * q) * ivd;
+		dest[15] = ( i * t - j * r + k * q) * ivd;
+		return dest;
+	};
+}
+</script>
+<script id="vertex_shader_code" type="GLSL">
+precision highp  float;
+
+attribute vec3 position;
+attribute vec4 color;
+uniform   mat4 mvpMatrix;
+varying   vec4 vColor;
+varying   vec3 vLighting;
+attribute vec2 texture_coord;
+varying   vec2 vTextureCoord;
+attribute vec3 aVertexNormal;
+uniform mat4 uNormalMatrix;
+void main(void){
+		vColor = color;
+
+		gl_Position = mvpMatrix * vec4(position, 1.0);
+
+		vec3 ambientLight = vec3(0.6, 0.6, 0.6);
+		vec3 directionalLightColor = vec3(1.4, 1.4, 1.4);
+		vec3 directionalVector = vec3(0.25, 1,0.5);
+    vTextureCoord = texture_coord;
+		vec3  invLight = normalize(uNormalMatrix * vec4(directionalVector, 0.0)).xyz;
+    float diffuse  = clamp(dot(normalize(aVertexNormal), invLight), 0.0, 1.0);
+		vLighting = ambientLight + (directionalLightColor * diffuse);
+}
+</script>
+<script id="fragment_shader_code" type="GLSL">
+precision highp float;
+
+varying vec4 vColor;
+varying vec3 vLighting;
+varying vec2 vTextureCoord;
+uniform sampler2D texture;
+
+void main(void){
+		vec4 smpColor = texture2D(texture, vTextureCoord);
+    gl_FragColor = vec4(vColor[0] * vLighting[0], vColor[1] * vLighting[1], vColor[2] * vLighting[2], vColor[3])* smpColor;
+}
+</script>
+</html>
