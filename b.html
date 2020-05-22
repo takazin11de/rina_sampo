@@ -1,5 +1,5 @@
 <!doctype html><html><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=800">
 <title>titles</title>
 <style>
 html, body, div, span, object, iframe,
@@ -103,37 +103,25 @@ input, select {
   box-sizing: border-box;
 }
 
-img,canvas {
+img,canvas, {
   display: block;
 	margin-left: auto;
   margin-right: auto;
 }
+#img_ctrl{
+	background-image : url(ctrl.png);
+	width:800px;
+	height:300px;
+	margin-left: auto;
+	margin-right:auto;
+}
 
 body{
 	text-align: center;
+	font-size: 0;
 }
-*{pointer-events: none;}
 </style></head><body>
-<canvas id="glcanvas"></canvas>
-<img src="ctrl.png" id="img_ctrl" width="800" height="300" border="0" >
-<map name="ctrl_">
-<area href="javascript:alert();" shape="rect" alt="四角形" coords="107,12,187,92">
-<area href="javascript:;" shape="rect" alt="四角形" coords="233,12,313,92">
-<area href="javascript:;" shape="rect" alt="四角形" coords="360,12,440,92">
-<area href="javascript:;" shape="rect" alt="四角形" coords="484,12,564,92">
-<area href="javascript:;" shape="rect" alt="四角形" coords="612,12,692,92">
-
-<area href="javascript:;" shape="rect" alt="四角形" coords="107,112,187,192">
-<
-<area href="javascript:;" shape="rect" alt="四角形" coords="360,112,440,192">
-<area href="javascript:;" shape="rect" alt="四角形" coords="484,112,564,192">
-<area href="javascript:;" shape="rect" alt="四角形" coords="612,112,692,192">
-
-<area href="javascript:;" shape="rect" alt="四角形" coords="233,209,313,289">
-<area href="javascript:;" shape="rect" alt="四角形" coords="484,209,564,289">
-<area href="javascript:;" shape="rect" alt="四角形" coords="612,209,692,289">
-</map>
-</body>
+<canvas id="glcanvas"></canvas><div id="img_ctrl"></div></body>
 <script>
 var rn_command=0;
 document.getElementById( "img_ctrl" ).addEventListener( "mousedown", function( event ) {
