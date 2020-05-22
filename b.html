@@ -133,6 +133,8 @@ body{
 <script>
 var rn_command=0;
 document.getElementById( "img_ctrl" ).addEventListener( "mousedown", function( event ) {
+	event.preventDefault();
+
 	var clickX = event.pageX ;
 	var clickY = event.pageY ;
 
@@ -148,10 +150,16 @@ document.getElementById( "img_ctrl" ).addEventListener( "mousedown", function( e
 	select_command(x,y);
 } ) ;
 document.getElementById( "img_ctrl" ).addEventListener( "mouseup", function( event ) {
+	event.preventDefault();
+
 	rn_command=0;
 } ) ;
+document.getElementById( "img_ctrl" ).addEventListener( "mouseleave", function( event ) {
+	event.preventDefault();
 
+} ) ;
 document.getElementById( "img_ctrl" ).addEventListener( "touchstart", function( event ) {
+	event.preventDefault();
 	var clickX = event.changedTouches[0].pageX;
 	var clickY = event.changedTouches[0].pageY;
 
@@ -167,9 +175,13 @@ document.getElementById( "img_ctrl" ).addEventListener( "touchstart", function( 
 	select_command(x,y);
 } ) ;
 document.getElementById( "img_ctrl" ).addEventListener( "touchend", function( event ) {
+	event.preventDefault();
+
 	rn_command=0;
 } ) ;
 document.getElementById( "img_ctrl" ).addEventListener( "touchmove", function( event ) {
+	event.preventDefault();
+
 } ) ;
 function select_command(x,y){//107,12,187,92
 	if( 107< x && x <187 && 12< y && y <92 ){
